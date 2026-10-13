@@ -340,11 +340,18 @@ button.secondary {
   font-weight: 600;
 }
 
+/* keyboard focus: the same blue ring everywhere, so it's clear what Tab reached */
+:focus-visible {
+  outline: 2px solid var(--blue-text);
+  outline-offset: 2px;
+}
+
 /* next hours: temperature line behind the columns */
 .hours-scroll {
   overflow-x: auto;
   margin: 0 -6px;
   padding: 0 6px 4px;
+  border-radius: 10px;
 }
 
 .hours {
