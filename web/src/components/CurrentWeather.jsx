@@ -1,4 +1,4 @@
-import { formatTime, fullName, temperature, windDirection, windSpeed } from '../utils/format';
+import { distance, formatTime, fullName, temperature, windDirection, windSpeed } from '../utils/format';
 import WeatherIcon from './WeatherIcon';
 
 const AIR_COLORS = { 1: '#2e9e5b', 2: '#7cae1f', 3: '#d69e2e', 4: '#dd6b20', 5: '#c53030' };
@@ -70,7 +70,7 @@ export default function CurrentWeather({ location, current, air, unit }) {
         <div><dt>Humidity</dt><dd>{current.humidity}%</dd></div>
         <div><dt>Wind</dt><dd>{windSpeed(current.wind_kmh, unit)} {windDirection(current.wind_deg)}</dd></div>
         <div><dt>Pressure</dt><dd>{current.pressure} hPa</dd></div>
-        {current.visibility_km != null && <div><dt>Visibility</dt><dd>{current.visibility_km} km</dd></div>}
+        {current.visibility_km != null && <div><dt>Visibility</dt><dd>{distance(current.visibility_km, unit)}</dd></div>}
         {air && (
           <div>
             <dt>Air quality</dt>

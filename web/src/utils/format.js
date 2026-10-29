@@ -38,6 +38,11 @@ export function windSpeed(kmh, unit) {
   return unit === 'F' ? `${Math.round(kmh / 1.609)} mph` : `${Math.round(kmh)} km/h`;
 }
 
+// in °F mode the wind is already in mph, so the visibility goes to miles too
+export function distance(km, unit) {
+  return unit === 'F' ? `${Math.round((km / 1.609) * 10) / 10} mi` : `${km} km`;
+}
+
 export function windDirection(degrees) {
   if (degrees == null) return '';
   return DIRECTIONS[Math.round(((degrees % 360) + 360) % 360 / 45) % 8];

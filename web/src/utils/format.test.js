@@ -1,5 +1,13 @@
 import { describe, expect, it } from 'vitest';
-import { backgroundFor, dayName, formatTime, localIsoDate, temperature, windDirection } from './format';
+import { backgroundFor, dayName, distance, formatTime, localIsoDate, temperature, windDirection } from './format';
+
+describe('distance', () => {
+  it('km in °C mode and miles in °F mode', () => {
+    expect(distance(10, 'C')).toBe('10 km');
+    expect(distance(10, 'F')).toBe('6.2 mi');
+    expect(distance(0.5, 'F')).toBe('0.3 mi');
+  });
+});
 
 describe('format', () => {
   it("shows the city's time and not the computer's", () => {
