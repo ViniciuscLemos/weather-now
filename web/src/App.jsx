@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { weatherByName, weatherByPlace } from './api';
-import { backgroundFor, localIsoDate } from './utils/format';
+import { backgroundFor, fullName, localIsoDate } from './utils/format';
 import Search from './components/Search';
 import WeatherIcon from './components/WeatherIcon';
 import BrazilCities from './components/BrazilCities';
@@ -47,10 +47,9 @@ export default function App() {
       setData(response);
 
       const { name, state, country, lat, lon } = response.location;
-      setRecent((list) => [
-        { name, state, country, lat, lon },
-        ...list.filter((c) => c.name !== name || c.country !== country),
-      ].slice(0, 5));
+      // the state counts too: Santa Maria (RS) and Santa Maria (DF) are different places
+      const same = (c) => c.name === name && c.state === state && c.country === country;
+      setRecent((list) => [{ name, state, country, lat, lon }, ...list.filter((c) => !same(c))].slice(0, 5));
     } catch (e) {
       if (e.name !== 'AbortError') setError(e.message);
     } finally {
@@ -102,7 +101,9 @@ export default function App() {
           <div className="recent">
             <span className="muted">Recent:</span>
             {recent.map((c) => (
-              <button key={`${c.lat},${c.lon}`} className="chip" onClick={() => searchPlace(c)}>{c.name}</button>
+              <button key={`${c.lat},${c.lon}`} className="chip" title={fullName(c)} onClick={() => searchPlace(c)}>
+                {c.name}
+              </button>
             ))}
             <button className="link" onClick={() => setRecent([])}>clear</button>
           </div>
