@@ -1,5 +1,19 @@
 import { describe, expect, it } from 'vitest';
-import { backgroundFor, dayName, distance, formatTime, localIsoDate, temperature, windDirection } from './format';
+import { backgroundFor, dayName, dewPoint, distance, formatTime, localIsoDate, temperature, windDirection } from './format';
+
+describe('dewPoint', () => {
+  it('matches the usual tables', () => {
+    expect(Math.round(dewPoint(30, 70))).toBe(24);
+    expect(Math.round(dewPoint(20, 50))).toBe(9);
+    // at 100% the dew point is the temperature itself
+    expect(dewPoint(15, 100)).toBeCloseTo(15, 5);
+  });
+
+  it('null without humidity', () => {
+    expect(dewPoint(20, 0)).toBeNull();
+    expect(dewPoint(null, 50)).toBeNull();
+  });
+});
 
 describe('distance', () => {
   it('km in °C mode and miles in °F mode', () => {

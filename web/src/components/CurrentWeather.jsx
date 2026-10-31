@@ -1,4 +1,4 @@
-import { distance, formatTime, fullName, temperature, windDirection, windSpeed } from '../utils/format';
+import { dewPoint, distance, formatTime, fullName, temperature, windDirection, windSpeed } from '../utils/format';
 import WeatherIcon from './WeatherIcon';
 
 const AIR_COLORS = { 1: '#2e9e5b', 2: '#7cae1f', 3: '#d69e2e', 4: '#dd6b20', 5: '#c53030' };
@@ -46,6 +46,7 @@ function SunPath({ current, offset }) {
 export default function CurrentWeather({ location, current, air, unit }) {
   const offset = location.utc_offset;
   const t = (c) => `${temperature(c, unit)}°`;
+  const dew = dewPoint(current.temperature, current.humidity);
 
   return (
     <section className="card current">
@@ -68,6 +69,7 @@ export default function CurrentWeather({ location, current, air, unit }) {
 
       <dl className="details">
         <div><dt>Humidity</dt><dd>{current.humidity}%</dd></div>
+        {dew != null && <div><dt>Dew point</dt><dd>{t(dew)}</dd></div>}
         <div><dt>Wind</dt><dd>{windSpeed(current.wind_kmh, unit)} {windDirection(current.wind_deg)}</dd></div>
         <div><dt>Pressure</dt><dd>{current.pressure} hPa</dd></div>
         {current.visibility_km != null && <div><dt>Visibility</dt><dd>{distance(current.visibility_km, unit)}</dd></div>}

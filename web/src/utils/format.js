@@ -34,6 +34,16 @@ export function temperature(celsius, unit) {
   return Math.round(value);
 }
 
+// Magnus formula, good to about 0.4 °C in normal weather. It's what tells you if
+// the air feels sticky: above ~20 °C most people find it muggy
+export function dewPoint(celsius, humidity) {
+  if (celsius == null || !humidity) return null;
+  const a = 17.62;
+  const b = 243.12;
+  const g = Math.log(humidity / 100) + (a * celsius) / (b + celsius);
+  return (b * g) / (a - g);
+}
+
 export function windSpeed(kmh, unit) {
   return unit === 'F' ? `${Math.round(kmh / 1.609)} mph` : `${Math.round(kmh)} km/h`;
 }
