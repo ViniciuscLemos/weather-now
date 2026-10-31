@@ -72,6 +72,7 @@ npm test
 - weather icons drawn in SVG (the sun rays turn slowly and the rain falls, unless the system asks for reduced motion)
 - a temperature line over the next hours and, for the next days, low-high bars on the same scale for the whole week
 - where the sun is between sunrise and sunset
+- the dew point next to the humidity, which says more about how muggy it feels than the humidity alone
 - dark mode, which follows the system theme
 
 The home screen and dark mode:
