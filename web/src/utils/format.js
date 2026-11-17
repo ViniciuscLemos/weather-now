@@ -76,6 +76,12 @@ export function backgroundFor(icon = '01d') {
   return 'cloudy';
 }
 
+// what the browser tab shows, so the temperature is there even with the tab in the background
+export function pageTitle(data, unit) {
+  if (!data) return 'Weather Now';
+  return `${temperature(data.current.temperature, unit)}° ${data.location.name} · Weather Now`;
+}
+
 export function fullName(place) {
   return [place.name, place.state, place.country].filter(Boolean).join(', ');
 }

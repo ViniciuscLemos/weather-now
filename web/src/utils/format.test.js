@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { backgroundFor, dayName, dewPoint, distance, formatTime, localIsoDate, temperature, windDirection, windWord } from './format';
+import { backgroundFor, dayName, dewPoint, distance, formatTime, localIsoDate, temperature, windDirection, windWord, pageTitle } from './format';
 
 describe('dewPoint', () => {
   it('matches the usual tables', () => {
@@ -24,6 +24,15 @@ describe('windWord', () => {
     expect(windWord(60)).toBe('gale');
     expect(windWord(120)).toBe('storm');
     expect(windWord(null)).toBe('');
+  });
+});
+
+describe('pageTitle', () => {
+  it('temperature and city, in the chosen unit', () => {
+    const data = { current: { temperature: 18.4 }, location: { name: 'Recife' } };
+    expect(pageTitle(data, 'C')).toBe('18° Recife · Weather Now');
+    expect(pageTitle(data, 'F')).toBe('65° Recife · Weather Now');
+    expect(pageTitle(null, 'C')).toBe('Weather Now');
   });
 });
 

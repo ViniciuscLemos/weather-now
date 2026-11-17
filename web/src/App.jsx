@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { weatherByName, weatherByPlace } from './api';
-import { backgroundFor, fullName, localIsoDate } from './utils/format';
+import { backgroundFor, fullName, localIsoDate, pageTitle } from './utils/format';
 import Search from './components/Search';
 import WeatherIcon from './components/WeatherIcon';
 import BrazilCities from './components/BrazilCities';
@@ -33,6 +33,9 @@ export default function App() {
 
   useEffect(() => save('unit', unit), [unit]);
   useEffect(() => save('recent', recent), [recent]);
+  useEffect(() => {
+    document.title = pageTitle(data, unit);
+  }, [data, unit]);
 
   async function load(fetcher) {
     // if the person searches another city before the first one answers, cancel the previous one
