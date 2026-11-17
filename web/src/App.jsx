@@ -88,9 +88,10 @@ export default function App() {
     <div className={`app ${data ? 'bg-' + backgroundFor(data.current.icon) : ''}`}>
       <header>
         <h1>Weather Now</h1>
-        <div className="units">
-          <button className={unit === 'C' ? 'active' : ''} onClick={() => setUnit('C')}>°C</button>
-          <button className={unit === 'F' ? 'active' : ''} onClick={() => setUnit('F')}>°F</button>
+        {/* aria-pressed so a screen reader says which one is on, not just two buttons */}
+        <div className="units" role="group" aria-label="Temperature unit">
+          <button className={unit === 'C' ? 'active' : ''} aria-pressed={unit === 'C'} onClick={() => setUnit('C')}>°C</button>
+          <button className={unit === 'F' ? 'active' : ''} aria-pressed={unit === 'F'} onClick={() => setUnit('F')}>°F</button>
         </div>
       </header>
 

@@ -40,8 +40,11 @@ test('switches between °C and °F, and remembers it', async ({ page }) => {
   await page.getByRole('button', { name: 'Recife' }).click();
   await expect(page.locator('.temp')).toHaveText('18°C');
 
+  await expect(page.getByRole('button', { name: '°C' })).toHaveAttribute('aria-pressed', 'true');
   await page.getByRole('button', { name: '°F' }).click();
   await expect(page.locator('.temp')).toHaveText('65°F');
+  await expect(page.getByRole('button', { name: '°F' })).toHaveAttribute('aria-pressed', 'true');
+  await expect(page.getByRole('button', { name: '°C' })).toHaveAttribute('aria-pressed', 'false');
   await page.reload();
   await expect(page.locator('.temp')).toHaveText('65°F');
 });
