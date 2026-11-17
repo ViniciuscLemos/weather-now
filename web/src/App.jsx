@@ -105,9 +105,19 @@ export default function App() {
           <div className="recent">
             <span className="muted">Recent:</span>
             {recent.map((c) => (
-              <button key={`${c.lat},${c.lon}`} className="chip" title={fullName(c)} onClick={() => searchPlace(c)}>
-                {c.name}
-              </button>
+              <span key={`${c.lat},${c.lon}`} className="chip-group">
+                <button className="chip" title={fullName(c)} onClick={() => searchPlace(c)}>
+                  {c.name}
+                </button>
+                {/* one wrong search shouldn't mean clearing the whole list */}
+                <button
+                  className="chip-remove"
+                  aria-label={`Remove ${c.name} from recent`}
+                  onClick={() => setRecent((list) => list.filter((other) => other !== c))}
+                >
+                  ×
+                </button>
+              </span>
             ))}
             <button className="link" onClick={() => setRecent([])}>clear</button>
           </div>

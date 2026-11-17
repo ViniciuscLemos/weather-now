@@ -66,13 +66,15 @@ npm test
 - a button to use the browser's location
 - shortcuts to the major cities in Brazil on the home screen
 - °C or °F (it's remembered)
-- recently searched cities
+- recently searched cities (each one can be removed on its own)
+- the temperature and the city in the browser tab
 - times always in the city's timezone (if you search Tokyo, the sunset shows Tokyo's time)
 - the background changes if it's sunny, cloudy, raining or night
 - weather icons drawn in SVG (the sun rays turn slowly and the rain falls, unless the system asks for reduced motion)
 - a temperature line over the next hours and, for the next days, low-high bars on the same scale for the whole week
 - where the sun is between sunrise and sunset
 - the dew point next to the humidity, which says more about how muggy it feels than the humidity alone
+- the wind in words too (calm, breeze, strong wind...), roughly the Beaufort scale
 - dark mode, which follows the system theme
 
 The home screen and dark mode:

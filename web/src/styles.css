@@ -188,6 +188,34 @@ button.secondary {
   color: var(--text);
 }
 
+.chip-group {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 99px;
+  background: var(--chip);
+}
+
+.chip-group .chip {
+  padding-right: 4px;
+  background: transparent;
+}
+
+.chip-remove {
+  width: 24px;
+  height: 24px;
+  margin-right: 4px;
+  padding: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--muted);
+  font-size: 1.1rem;
+  line-height: 1;
+}
+
+.chip-remove:hover {
+  color: var(--text);
+}
+
 .link {
   padding: 4px;
   background: none;
