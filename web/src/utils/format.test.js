@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { backgroundFor, dayName, dewPoint, distance, formatTime, localIsoDate, temperature, windDirection } from './format';
+import { backgroundFor, dayName, dewPoint, distance, formatTime, localIsoDate, temperature, windDirection, windWord } from './format';
 
 describe('dewPoint', () => {
   it('matches the usual tables', () => {
@@ -12,6 +12,18 @@ describe('dewPoint', () => {
   it('null without humidity', () => {
     expect(dewPoint(20, 0)).toBeNull();
     expect(dewPoint(null, 50)).toBeNull();
+  });
+});
+
+describe('windWord', () => {
+  it('puts the speed in words', () => {
+    expect(windWord(0)).toBe('calm');
+    expect(windWord(8)).toBe('light wind');
+    expect(windWord(12)).toBe('breeze');
+    expect(windWord(40)).toBe('strong wind');
+    expect(windWord(60)).toBe('gale');
+    expect(windWord(120)).toBe('storm');
+    expect(windWord(null)).toBe('');
   });
 });
 

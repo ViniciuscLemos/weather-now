@@ -53,6 +53,15 @@ export function distance(km, unit) {
   return unit === 'F' ? `${Math.round((km / 1.609) * 10) / 10} mi` : `${km} km`;
 }
 
+// a number alone says little to most people, so the wind gets a word too.
+// Roughly the Beaufort scale, with neighbouring levels merged
+const WIND_WORDS = [[2, 'calm'], [12, 'light wind'], [29, 'breeze'], [50, 'strong wind'], [75, 'gale']];
+
+export function windWord(kmh) {
+  if (kmh == null) return '';
+  return (WIND_WORDS.find(([below]) => kmh < below) || [0, 'storm'])[1];
+}
+
 export function windDirection(degrees) {
   if (degrees == null) return '';
   return DIRECTIONS[Math.round(((degrees % 360) + 360) % 360 / 45) % 8];
