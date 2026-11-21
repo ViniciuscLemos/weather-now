@@ -11,7 +11,12 @@ test('home screen has the search and the Brazilian cities', async ({ page }) => 
 test('searches a city by name', async ({ page }) => {
   const calls = await mockApi(page);
   await page.goto('/');
-  await page.getByRole('combobox', { name: 'City' }).fill('São Paulo');
+  const input = page.getByRole('combobox', { name: 'City' });
+  await input.fill('São Paulo');
+  // on a phone the suggestions open over the Search button, and the click sometimes
+  // landed while they were still appearing. Esc closes them, like a person would
+  await expect(page.getByRole('option', { name: /São Paulo/ })).toBeVisible();
+  await input.press('Escape');
   await page.getByRole('button', { name: 'Search' }).click();
 
   await expect(page.getByRole('heading', { name: /São Paulo/ }).first()).toBeVisible();
