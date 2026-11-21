@@ -82,6 +82,15 @@ export function pageTitle(data, unit) {
   return `${temperature(data.current.temperature, unit)}° ${data.location.name} · Weather Now`;
 }
 
+// one line over the hours, so "will it rain?" doesn't need reading every column.
+// 50% is where the forecast leans to rain
+export function rainNote(hours, offset) {
+  const first = hours.find((h) => h.rain_chance >= 50);
+  if (!first) return hours.length ? 'No rain expected in the next hours' : '';
+  const peak = Math.max(...hours.map((h) => h.rain_chance));
+  return `Rain likely from ${formatTime(first.time, offset)} (up to ${peak}%)`;
+}
+
 export function fullName(place) {
   return [place.name, place.state, place.country].filter(Boolean).join(', ');
 }

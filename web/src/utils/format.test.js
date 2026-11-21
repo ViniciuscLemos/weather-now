@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { backgroundFor, dayName, dewPoint, distance, formatTime, localIsoDate, temperature, windDirection, windWord, pageTitle } from './format';
+import { backgroundFor, dayName, dewPoint, distance, formatTime, localIsoDate, temperature, windDirection, windWord, pageTitle, rainNote } from './format';
 
 describe('dewPoint', () => {
   it('matches the usual tables', () => {
@@ -24,6 +24,18 @@ describe('windWord', () => {
     expect(windWord(60)).toBe('gale');
     expect(windWord(120)).toBe('storm');
     expect(windWord(null)).toBe('');
+  });
+});
+
+describe('rainNote', () => {
+  const at = (hour, chance) => ({ time: Date.UTC(2026, 10, 21, hour) / 1000, rain_chance: chance });
+  it('says when the rain starts, in the city time', () => {
+    const hours = [at(12, 10), at(15, 60), at(18, 80), at(21, 30)];
+    expect(rainNote(hours, -10800)).toBe('Rain likely from 12:00 (up to 80%)');
+  });
+  it('or that there is none coming', () => {
+    expect(rainNote([at(12, 10), at(15, 40)], 0)).toBe('No rain expected in the next hours');
+    expect(rainNote([], 0)).toBe('');
   });
 });
 

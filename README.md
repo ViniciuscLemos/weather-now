@@ -71,6 +71,7 @@ npm test
 - times always in the city's timezone (if you search Tokyo, the sunset shows Tokyo's time)
 - the background changes if it's sunny, cloudy, raining or night
 - weather icons drawn in SVG (the sun rays turn slowly and the rain falls, unless the system asks for reduced motion)
+- one line saying if and when rain is likely in the next hours
 - a temperature line over the next hours and, for the next days, low-high bars on the same scale for the whole week
 - where the sun is between sunrise and sunset
 - the dew point next to the humidity, which says more about how muggy it feels than the humidity alone

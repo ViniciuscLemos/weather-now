@@ -637,3 +637,8 @@ footer a {
   clip-path: inset(50%);
   white-space: nowrap;
 }
+
+.rain-note {
+  margin: -4px 0 8px;
+  font-size: 0.9rem;
+}

@@ -1,4 +1,4 @@
-import { dayName, formatTime, temperature } from '../utils/format';
+import { dayName, formatTime, rainNote, temperature } from '../utils/format';
 import WeatherIcon from './WeatherIcon';
 
 // line through the temperatures, drawn behind the hour columns.
@@ -33,6 +33,7 @@ export function NextHours({ hours, offset, unit }) {
   return (
     <section className="card">
       <h3>Next hours</h3>
+      <p className="muted rain-note">{rainNote(hours, offset)}</p>
       {/* focusable, so keyboard users can scroll it sideways with the arrow keys */}
       <div className="hours-scroll" tabIndex={0} role="region" aria-label="Next hours, scrolls sideways">
         <div className="hours" style={{ '--count': hours.length }}>
