@@ -42,7 +42,7 @@ export function NextHours({ hours, offset, unit }) {
               <li key={h.time}>
                 <strong className="hour-temp">{temps[i]}°</strong>
                 <WeatherIcon icon={h.icon} size={40} label={h.description} />
-                <span className={`rain ${h.rain_chance ? '' : 'none'}`}>{h.rain_chance}%</span>
+                <span className={`rain ${h.rain_chance ? '' : 'none'}`} title="Chance of rain">{h.rain_chance}%<span className="sr-only"> chance of rain</span></span>
                 <span className="muted hour">{formatTime(h.time, offset)}</span>
               </li>
             ))}
@@ -69,7 +69,7 @@ export function NextDays({ days, today, unit }) {
           <li key={d.date}>
             <span className="day">{dayName(d.date, today)}</span>
             <WeatherIcon icon={d.icon} size={34} label={d.description} />
-            <span className={`rain ${d.rain_chance ? '' : 'none'}`}>{d.rain_chance}%</span>
+            <span className={`rain ${d.rain_chance ? '' : 'none'}`} title="Chance of rain">{d.rain_chance}%<span className="sr-only"> chance of rain</span></span>
             <span className="muted low">{lows[i]}°</span>
             <span className="range">
               <span
